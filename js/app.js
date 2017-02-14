@@ -11,35 +11,44 @@ $.ajax({
 	dataType: 'json',
 	success: function(data){
 		console.log(data);
+
+		var cityDiv = document.createElement("div")
+		cityDiv.className = "city";
 		var body = document.getElementsByTagName("body")[0];
 		var heading = document.createElement("h1");
-		heading.className = "city";
 		heading.innerHTML = data.name;
-		body.appendChild(heading);
+		cityDiv.appendChild(heading)
+		body.appendChild(cityDiv);
 
+		var tempDiv = document.createElement("div")
+		tempDiv.className = "temp";
 		var tempKel = data.main.temp
 		var currentTemp = document.createElement("h1");
-		currentTemp.className = "temp";
-		currentTemp.innerHTML =  convertToFarenheit(tempKel);
-		body.appendChild(currentTemp);
+		currentTemp.innerHTML =  convertToFarenheit(tempKel) + " °F";
+		tempDiv.appendChild(currentTemp)
+		body.appendChild(tempDiv);
 
+		var descrDiv = document.createElement("div")
+		descrDiv.className = "weather-description";
 		var weatherDesc = document.createElement("h1");
-		weatherDesc.className = "weather-description";
 		var getDescription = data.weather[0].description;
 		weatherDesc.innerHTML = getDescription;
-		body.appendChild(weatherDesc);
+		descrDiv.appendChild(weatherDesc);
+		body.appendChild(descrDiv);
 
+		var highAndLowDiv = document.createElement("div")
+		highAndLowDiv.className = "highAndLowDiv";
 		var getHigh = data.main.temp_max;
 		var high = document.createElement("h3");
-		high.className = "high";
-		high.innerHTML = "High of " + convertToFarenheit(getHigh)
-		body.appendChild(high);
+		high.innerHTML = "High of " + convertToFarenheit(getHigh);
+		highAndLowDiv.appendChild(high)
+		body.appendChild(highAndLowDiv);
 
 		var getLow = data.main.temp_min;
 		var low = document.createElement("h3");
-		low.className = "low";
 		low.innerHTML = "Low of " + convertToFarenheit(getLow)
-		body.appendChild(low);
+		highAndLowDiv.appendChild(low)
+		body.appendChild(highAndLowDiv);
 
 
 		// var low =
