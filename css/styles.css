@@ -1,0 +1,7 @@
+body {
+	background-color: #5C83CF;
+}
+
+.weather-description {
+	text-transform: capitalize;
+}
